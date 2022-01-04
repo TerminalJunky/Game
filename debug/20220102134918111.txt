@@ -1,0 +1,31 @@
+MEM:1846240:TIME:0:LOG:io:start
+MEM:1846240:TIME:1:LOG:io:io_internal:start
+MEM:1846240:TIME:26:LOG:io:io_external:start
+MEM:1846240:TIME:0:LOG:io:external:locate_core_files
+MEM:1846240:TIME:0:LOG:ERROR:io:io_external:print_read_file:null file_name
+build_number:20220102
+os_name:Windows 10
+os_version:10.0
+cpu_arch:amd64
+cpu_cores:8
+file_slash:\
+java_path:C:\Users\Bryan\code\Game\bin
+memory_max:4284481536
+memory_total:268435456
+memory_peak:1846240
+memory_used:1846240
+file_slash:\
+directory_primary:C:\Users\Bryan\code\Game\
+directory_offical_games:C:\Users\Bryan\code\Game\offical\
+directory_mods:C:\Users\Bryan\code\Game\mods\
+directory_game_current:C:\Users\Bryan\code\Game\offical\default\
+directory_language:C:\Users\Bryan\code\Game\offical\default\language\
+directory_language_text:C:\Users\Bryan\code\Game\offical\default\language\texts\
+directory_language_captions:C:\Users\Bryan\code\Game\offical\default\language\captions\
+directory_settings:C:\Users\Bryan\code\Game\settings\
+file_language_license:C:\Users\Bryan\code\Game\offical\default\language\license\license.txt
+file_setting_debug:C:\Users\Bryan\code\Game\settings\debug.txt
+file_setting_license:C:\Users\Bryan\code\Game\settings\signed.txt
+file_setting_max_log:C:\Users\Bryan\code\Game\settings\max_log.txt
+file_setting_langauge_native:C:\Users\Bryan\code\Game\settings\language_native.txt
+file_setting_language_english:C:\Users\Bryan\code\Game\settings\language_english.txt

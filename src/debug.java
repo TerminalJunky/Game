@@ -31,6 +31,7 @@ public class debug {
 		System.out.println("debug:start");
 		s = store;
 		debug_on = true;
+		max_log = 50;
 		debug_gui_on = false;
 		java_runtime = Runtime.getRuntime();
 		cpu_cores = java_runtime.availableProcessors();
@@ -64,7 +65,11 @@ public class debug {
 		messages.add("memory_total:" + memory_total);
 		messages.add("memory_peak:" + memory_peak);
 		messages.add("memory_used:" + memory_used);
-
+		
+		ArrayList<String> file_locations = s.io.external.get_file_locations();
+		for(int i = 0; i < file_locations.size(); i++){
+			messages.add( file_locations.get(i) );
+		}
 		for(int x = 0; x < messages.size(); x++) {
 		System.out.println(messages.get(x));
 		}
@@ -72,7 +77,7 @@ public class debug {
 	}
 	public void write_debug()
 	{
-		// pending work needs file manager
+		s.io.external.write_debugger_only(s.io.external.directory_debug, messages);
 	}
 	public void message(String message)
 	{
@@ -86,6 +91,7 @@ public class debug {
 			if(debug_gui_on) {
 				// pending work gui output not built
 			}
+			time_start = System.currentTimeMillis();
 		}
 	}
 	public long calculate_memory()
