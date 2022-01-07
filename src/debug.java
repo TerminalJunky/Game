@@ -61,6 +61,7 @@ public class debug {
 		messages.add("cpu_cores:" + cpu_cores);
 		messages.add("file_slash:" + file_slash);
 		messages.add("java_path:" + java_path);
+		messages.add("java_home:" + java_home);
 		messages.add("memory_max:" + memory_max);
 		messages.add("memory_total:" + memory_total);
 		messages.add("memory_peak:" + memory_peak);

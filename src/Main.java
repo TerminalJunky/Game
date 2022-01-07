@@ -7,8 +7,8 @@ public class Main {
 		storage s = new storage();
 		s.start(build_number);
 		s.recursive_start(s, build_number);
-		
-		s.io.external.print_read_file(null);
+		gui_bug gc = new gui_bug();
+		gc.start(s);
 	}
 }
  
