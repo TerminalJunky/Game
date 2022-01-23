@@ -1,7 +1,6 @@
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -12,14 +11,14 @@ import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.WindowConstants;
 
-public class gui_bug {
-	
+public class gui_test {
 	public storage s;
 	JButton button_send;
 	JButton button_decline;
 	JTextArea text_bug_report;
 	JScrollPane scroll_bug_report;
 	String text_report;
+	JPanel test_panel;
 	
 	public void start(storage store)
 	{
@@ -42,6 +41,14 @@ public class gui_bug {
 		JPanel panel_spacer_03 = new JPanel();
 		JPanel panel_send = new JPanel();
 		JPanel panel_decline = new JPanel();
+		
+		panel_background.setBackground(Color.BLACK);
+		panel_top.setBackground(Color.GRAY);
+		panel_middle.setBackground(Color.PINK);
+		panel_bottom.setBackground(Color.YELLOW);
+		panel_spacer_01.setBackground(Color.GREEN);
+		panel_spacer_02.setBackground(Color.CYAN);
+		panel_spacer_03.setBackground(Color.MAGENTA);
 		
 		button_send = new JButton();
 		button_decline = new JButton();
@@ -81,7 +88,16 @@ public class gui_bug {
 		button_send.setText("Send Bug Info");
 		button_decline.setText("Do Not Send");
 		
-		panel_top.add(scroll_bug_report);
+		//data_button_grid bg = new data_button_grid();
+		//bg.start(s);
+		s.data.grid.start(s);
+		
+		test_panel = s.data.grid.set_grid_size(5, 5, dimension_top);
+		System.out.println("R:" + s.data.grid.rows + ":C:" + s.data.grid.columns);
+		s.data.grid.repaint_button_all();
+		
+		panel_top.add(test_panel);
+		//panel_top.add(scroll_bug_report);
 		
 		panel_decline.add(button_decline);
 		panel_send.add(button_send);
@@ -106,23 +122,6 @@ public class gui_bug {
 		
 		// pack is whitespace bug fix
 		bug_gui.pack();
-		
-		for(int x = 0; x < s.debug.messages.size(); x++) {
-			text_report = text_report + s.debug.messages.get(x) + "\n";
-		}
-		text_bug_report.setText(text_report);
-		button_send.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				//PENDING WORK network functionality needed
-				text_bug_report.setText(text_report + "user_accepted");
-			}
-		});
-		button_decline.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				//PENDING WORK window close needed
-				text_bug_report.setText(text_report + "user_declined");
-			}
-		});
 		
 		bug_gui.setVisible(true);
 	}

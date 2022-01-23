@@ -54,6 +54,12 @@ public class debug {
 	}
 	public void bug()
 	{
+		if(debug_on) {
+		ArrayList<String> temp = new ArrayList<>();
+		for(int x = 0; x < messages.size(); x++) {
+			temp.add(messages.get(x));
+		}
+		messages = new ArrayList<>();
 		messages.add("build_number:" + build_number);
 		messages.add("os_name:" + os_name);
 		messages.add("os_version:" + os_version );
@@ -74,7 +80,13 @@ public class debug {
 		for(int x = 0; x < messages.size(); x++) {
 		System.out.println(messages.get(x));
 		}
+		for(int x = 0; x < temp.size(); x++) {
+			messages.add(temp.get(x));
+		}
 		write_debug();
+		gui_bug gb = new gui_bug();
+		gb.start(s);
+		}
 	}
 	public void write_debug()
 	{
@@ -108,5 +120,9 @@ public class debug {
 		time_end = System.currentTimeMillis();
 		time_run = time_end - time_start;
 		return time_run;
+	}
+	public long get_current_time()
+	{
+		return System.currentTimeMillis();
 	}
 }

@@ -1,3 +1,4 @@
+import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -11,6 +12,8 @@ import java.nio.charset.StandardCharsets;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+
+import javax.imageio.ImageIO;
 
 public class io_external {
 
@@ -34,6 +37,30 @@ public class io_external {
 	public String file_language_license;
 	public String file_language_notice;
 	public String file_output_debug;
+	
+	/*
+	images_land = new ArrayList<>();
+		images_resource = new ArrayList<>();
+		images_city = new ArrayList<>();
+		images_unit = new ArrayList<>();
+		images_faction = new ArrayList<>();
+		images_health = new ArrayList<>();
+		images_special = new ArrayList<>();
+	 */
+	
+	public String directory_assets;
+	public String directory_images;
+	public String directory_images_land;
+	public String directory_images_border;
+	public String directory_images_resource;
+	public String directory_images_city;
+	public String directory_images_unit;
+	public String directory_images_count;
+	public String directory_images_faction;
+	public String directory_images_health;
+	public String directory_images_special;
+	public String file_images_clear;
+	public String file_images_black;
 	
 	public void start(storage store)
 	{
@@ -68,6 +95,19 @@ public class io_external {
 		directory_offical_games = directory_primary + "offical" + file_slash;
 		directory_mods = directory_primary + "mods" + file_slash;
 		directory_game_current = directory_offical_games + "default" + file_slash;
+		directory_assets = directory_game_current + "assets" + file_slash;
+		directory_images = directory_assets + "images" + file_slash;
+		directory_images_land = directory_images + "land" + file_slash;
+		directory_images_border = directory_images + "border" + file_slash;
+		directory_images_resource = directory_images + "resource" + file_slash;
+		directory_images_city = directory_images + "city" + file_slash;
+		directory_images_unit = directory_images + "unit" + file_slash;
+		directory_images_count = directory_images + "count" + file_slash;
+		directory_images_faction = directory_images + "faction" + file_slash;
+		directory_images_health = directory_images + "health" + file_slash;
+		directory_images_special = directory_images + "special" + file_slash;
+		file_images_clear = directory_images + "clear.png";
+		file_images_black = directory_images + "black.png";
 		directory_language = directory_game_current + "language" + file_slash;
 		directory_language_texts = directory_language + "texts" + file_slash;
 		directory_language_captions = directory_language + "captions" + file_slash;
@@ -242,6 +282,107 @@ public class io_external {
 			s.debug.bug();
 		}
 	}
+	public ArrayList<String> get_all_files_in_directory(String directory_name)
+	{
+		ArrayList<String> all_files = new ArrayList<>();
+		if(directory_name != null) {
+		s.debug.message("io_external:get_all_files_in_directory:" + directory_name);
+			File directory = new File(directory_name);
+			if(directory.isDirectory()) {
+					File[] files = directory.listFiles();
+					for(int x = 0; x < files.length; x++) {
+						if(files[x].isFile()) {
+							all_files.add(files[x].toString());
+						}
+					}
+			}else {
+				s.debug.message("ERROR:io_external:get_all_files_in_directory: file is not directory:" + directory_name);
+				s.debug.bug();
+			}
+		} else {
+			s.debug.message("ERROR:io_external:get_all_files_in_directory:null directory name");
+			s.debug.bug();
+		}
+		return all_files;
+	}
+	public BufferedImage get_image(String file_name)
+	{
+		s.debug.message("io_external:get_image");
+		BufferedImage bi = null;
+		if(file_name != null) {
+			s.debug.message("io_external:get_image:file_name:" + file_name);
+			File temp = new File(file_name);
+			try {
+				bi = ImageIO.read(temp);
+			} catch (IOException e) { s.debug.message("io_external:get_image:file_name:" + file_name +":failed to open file"); s.debug.bug();}
+		} else {
+			s.debug.message("ERROR:io_external:get_image:null file name"); s.debug.bug();
+		}
+		return bi;
+	}
+	public ArrayList<BufferedImage> get_all_images(String directory)
+	{
+		ArrayList<BufferedImage> images = new ArrayList<>();
+		if(directory != null) {
+			s.debug.message("io_external:get_all_images:from:" + directory);
+			ArrayList<String> extensions = new ArrayList<>();
+			extensions.add("jpeg");
+			extensions.add("png");
+			extensions.add("bmp");
+			ArrayList<String> files = get_files_of_extension_type(directory, extensions);
+			for(int x = 0; x < files.size(); x++) {
+				images.add(get_image(files.get(x)) );
+			}
+		} else {
+			s.debug.message("ERROR:io_external:get_all_images:null directory");
+			s.debug.bug();
+		}
+		return images;
+	}
+	public ArrayList<String> get_files_of_extension_type(String directory, ArrayList<String> valid_extensions)
+	{
+		ArrayList<String> files = new ArrayList<>();
+		if(directory != null && valid_extensions != null) {
+			String ext = ""; 
+			for(int x = 0; x < valid_extensions.size(); x++) { ext = ext + valid_extensions.get(x) + ":";  }
+			s.debug.message("io_external:get_files_of_extension_type:directory:" + directory + ":extensions:" + ext);
+			ArrayList<String> raw_files = get_all_files_in_directory(directory);
+			String extension = "";
+			for(int x = 0; x < raw_files.size(); x++) {
+				extension = get_file_extension(raw_files.get(x));
+				for(int y = 0; y < valid_extensions.size(); y++) {
+					if(extension.equalsIgnoreCase(valid_extensions.get(y))) {
+						files.add(raw_files.get(x));
+						y = valid_extensions.size() + 1;
+					}
+				}
+			}
+		} else {
+			if(directory == null) {
+				s.debug.message("ERROR:io_external:get_files_of_extension_type: null directory"); s.debug.bug();
+			}
+			if(valid_extensions == null) {
+				s.debug.message("ERROR:io_external:get_file_of_extension_type: null valid extensions"); s.debug.bug();
+			}
+		}
+		return files;
+	}
+	public String get_file_extension(String file_name)
+	{
+		String extension = "";
+		if(file_name != null) {
+			s.debug.message("io_external:get_file_extension:file_name:" + file_name);
+			StringBuilder sb = new StringBuilder(file_name);
+			sb.reverse();
+			String temp = sb.substring(0, sb.indexOf("."));
+			sb = new StringBuilder(temp);
+			sb.reverse();
+			extension = sb.toString();
+		} else {
+			s.debug.message("ERROR:io_external:get_file_extension:null file name"); s.debug.bug();
+		}
+		return extension;
+	}
 	public void write_debugger_only(String debug_directory, ArrayList<String> output)
 	{
 		if(debug_directory != null || output != null) {
@@ -278,8 +419,8 @@ public class io_external {
 						writer.close();
 						out.close();
 					} 
-					} catch (FileNotFoundException e) { s.debug.message("ERROR:io:io_external:write_debugger_only: java io file not found catch"); s.debug.bug(); } 
-					  catch (IOException e) { s.debug.message("ERROR:io:io_external:write_debugger_only: java io exception catch"); s.debug.bug(); }
+					} catch (FileNotFoundException e) { System.out.println("ERROR:io:io_external:write_debugger_only: java io file not found catch"); } 
+					  catch (IOException e) { System.out.println("ERROR:io:io_external:write_debugger_only: java io exception catch"); }
 			} else {
 				if(debug_directory == null && output == null) {
 					System.out.println("ERROR:io:io_external:write_debugger_only:null file_name & output");
