@@ -7,6 +7,7 @@ public class assets {
 	public void start(storage store)
 	{
 		s = store;
+		s.debug.message("assets:start");
 		images = new asset_images();
 		images.start(s);
 	}

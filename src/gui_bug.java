@@ -2,7 +2,6 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -123,7 +122,6 @@ public class gui_bug {
 				text_bug_report.setText(text_report + "user_declined");
 			}
 		});
-		
 		bug_gui.setVisible(true);
 	}
 }

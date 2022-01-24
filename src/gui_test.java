@@ -1,6 +1,8 @@
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -91,9 +93,8 @@ public class gui_test {
 		//data_button_grid bg = new data_button_grid();
 		//bg.start(s);
 		s.data.grid.start(s);
-		
+
 		test_panel = s.data.grid.set_grid_size(5, 5, dimension_top);
-		System.out.println("R:" + s.data.grid.rows + ":C:" + s.data.grid.columns);
 		s.data.grid.repaint_button_all();
 		
 		panel_top.add(test_panel);
@@ -124,5 +125,20 @@ public class gui_test {
 		bug_gui.pack();
 		
 		bug_gui.setVisible(true);
+		
+		text_bug_report.setText(text_report);
+		button_send.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//PENDING WORK network functionality needed
+				text_bug_report.setText(text_report + "user_accepted");
+			}
+		});
+		button_decline.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//PENDING WORK window close needed
+				s.gui.launcher.close();
+				text_bug_report.setText(text_report + "user_declined");
+			}
+		});
 	}
 }

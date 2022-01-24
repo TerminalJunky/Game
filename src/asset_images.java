@@ -92,6 +92,7 @@ public class asset_images {
 	}
 	public void get_all_images() 
 	{
+		s.debug.message("asset_images:get_all_images");
 		black = s.io.external.get_image(s.io.external.file_images_black);
 		clear = s.io.external.get_image(s.io.external.file_images_clear);
 		
@@ -133,6 +134,7 @@ public class asset_images {
 	}
 	public BufferedImage get_rescaled_image(BufferedImage source, int width, int height)
 	{
+		s.debug.message("asset_images:get_rescaled_image");
 		Image origonal = source.getScaledInstance(width, height, source.getType());
 		BufferedImage resized = new BufferedImage(width, height, source.getType());
 		Graphics2D graphic = resized.createGraphics();
@@ -142,6 +144,7 @@ public class asset_images {
 	}
 	public void get_rescaled_sources(int width, int height)
 	{
+		s.debug.message("asset_images:get_rescaled_sources");
 		for(int x = 0; x < source_images_land.size(); x++) {
 			source_images_land.set(x, get_rescaled_image(source_images_land.get(x), width, height));
 		}
@@ -172,6 +175,7 @@ public class asset_images {
 	}
 	public void get_rescaled_grid_images(int width, int height)
 	{
+		s.debug.message("asset_images:get_rescaled_grid_images");
 		for(int x = 0; x < source_images_land.size(); x++) {
 			grid_images_land.add(get_rescaled_image(source_images_land.get(x), width, height));
 		}

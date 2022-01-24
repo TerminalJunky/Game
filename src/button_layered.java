@@ -13,7 +13,6 @@ public class button_layered {
 	 */
 	 
 	storage s;
-	
 	button_layer button = new button_layer();
 	int[] images;
 	
@@ -31,7 +30,6 @@ public class button_layered {
 		images[7] = 1; //index_count
 		images[8] = 1; //index_special
 	}
-	
 	public void load_images(int index_border, int index_land, int index_resource, 
 			int index_city, int index_unit, int index_faction, int index_health, 
 							int index_count, int index_special)
@@ -50,7 +48,6 @@ public class button_layered {
 	{
 		button.repaint();
 	}
-	
 	class button_layer extends JButton{ // allows layered drawing don't mod this code
 		private static final long serialVersionUID = 1L; // a useless java thing
 		public button_layer() { }
