@@ -13,6 +13,6 @@ public class Main {
 		
 		//testing remove later
 		//gui_test gt = new gui_test();
-		//gt.start(s);
+		//gt.start(s);	
 	}
 }

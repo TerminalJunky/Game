@@ -84,13 +84,13 @@ public class dash_launcher {
 		extensions.add("jar");
 		
 		ArrayList<String> version_temp = s.io.external.get_files_of_extension_type(s.io.external.directory_primary, extensions); 
-		ArrayList<String> lang_temp = s.io.external.read_file_utf8(s.io.external.file_languages_native);
+		ArrayList<String> lang_temp = s.io.external.read_file_utf8(s.settings.file_language_preferred);
 		
 		text_version = new String[version_temp.size()];
 		text_language = new String[lang_temp.size()];
 		
 		for(int x = 0; x < version_temp.size(); x++) {
-			text_version[x] = version_temp.get(x);
+			text_version[x] = s.io.external.get_file_name_only_without_extension( version_temp.get(x) );
 		}
 		for(int x = 0; x < lang_temp.size(); x++) {
 			text_language[x] = lang_temp.get(x);

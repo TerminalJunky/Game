@@ -29,8 +29,6 @@ public class io_external {
 	public String directory_settings;
 	public String directory_debug;
 	public String file_slash;
-	public String file_setting_language_native;
-	public String file_setting_language_english;
 	public String file_setting_max_log;
 	public String file_setting_license;
 	public String file_setting_debug;
@@ -54,9 +52,6 @@ public class io_external {
 	public String directory_language_license;
 	public String directory_language_launcher;
 	public String directory_language_general;
-	public String file_languages_native;
-	public String file_languages_english;
-	public String preference_langauge;
 	public String directory_saves;
 	
 	public void start(storage store)
@@ -77,16 +72,11 @@ public class io_external {
 		file_setting_debug = "";
 		file_setting_license = "";
 		file_setting_max_log = "";
-		file_setting_language_native = "";
-		file_setting_language_english = "";
 		file_slash = "";
 		file_output_debug = "";
 		directory_language_license = "";
 		directory_language_launcher = "";
 		directory_language_general = "";
-		file_languages_english = "";
-		file_languages_native = "";
-		preference_langauge = "english";
 		directory_saves = "";
 		locate_core_files();
 	}
@@ -120,14 +110,10 @@ public class io_external {
 		file_language_notice = directory_language + "license" + file_slash + "notice.txt";
 		file_setting_debug = directory_settings + "debug.txt";
 		file_setting_license = directory_settings + "signed.txt";
-		file_setting_max_log = directory_settings + "max_log.txt";
-		file_setting_language_native = directory_settings + "language_native.txt";
-		file_setting_language_english = directory_settings + "language_english.txt";	
+		file_setting_max_log = directory_settings + "max_log.txt";	
 		directory_language_general = directory_primary + "language" + file_slash;
 		directory_language_license = directory_language_general + "license" + file_slash;
 		directory_language_launcher = directory_language_general + "launcher" + file_slash;
-		file_languages_native = directory_language_general + "native.txt";
-		file_languages_english = directory_language_general + "languages.txt";
 		directory_saves = directory_primary + "saves" + file_slash;
 	}
 	public ArrayList<String> get_file_locations()
@@ -147,8 +133,9 @@ public class io_external {
 		file_locations.add("file_setting_debug:" + file_setting_debug);
 		file_locations.add("file_setting_license:" + file_setting_license);
 		file_locations.add("file_setting_max_log:" + file_setting_max_log);
-		file_locations.add("file_setting_langauge_native:" + file_setting_language_native);
-		file_locations.add("file_setting_language_english:" + file_setting_language_english);
+		file_locations.add("file_setting_langauge_native:" + s.settings.file_language_native);
+		file_locations.add("file_setting_language_english:" + s.settings.file_language_english);
+		file_locations.add("file_setting_language_preferred:" + s.settings.file_language_preferred);
 		return file_locations;
 	}
 	public void print_file_locations()
@@ -445,5 +432,28 @@ public class io_external {
 					System.out.println("ERROR:io:io_external:write_debugger_only:null output");	
 				}
 			}
+	}
+	public String get_file_name_only_without_extension(String file_name)
+	{
+		if(file_name != null) {
+			s.debug.message("io_external:get_file_name_only_without_extension:" + file_name);
+			String reversed = "";
+			StringBuilder temp = new StringBuilder(file_name);
+			temp.reverse();
+			int index = temp.indexOf(".");
+			if(index > 0) {
+				reversed = temp.substring(index + 1);
+				temp = new StringBuilder(reversed);
+			}
+			index = temp.indexOf(file_slash);
+			if(index > 0) {
+			reversed = temp.substring(0, index);
+			temp = new StringBuilder(reversed);
+			return temp.reverse().toString();
+			}
+		} else {
+			s.debug.message("get_file_name_only_without_extension: null file_name");
+		}
+		return "";
 	}
 }

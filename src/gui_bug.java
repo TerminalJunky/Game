@@ -19,11 +19,14 @@ public class gui_bug {
 	JTextArea text_bug_report;
 	JScrollPane scroll_bug_report;
 	String text_report;
+	JFrame bug_gui;
 	
 	public void start(storage store)
 	{
 		s = store;
 		System.out.println("ERROR:BUG_DECLARED:GUI:BUG");
+		
+		bug_gui = new JFrame();
 		
 		Dimension dimension_window = new Dimension(640,480);
 		Dimension dimension_top = new Dimension(640,380);
@@ -97,7 +100,7 @@ public class gui_bug {
 		
 		JFrame bug_gui = new JFrame();
 		
-		bug_gui.setSize(dimension_window);
+		//bug_gui.setSize(dimension_window);
 		
 		bug_gui.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		bug_gui.setTitle("Ooops! We found a Bug");

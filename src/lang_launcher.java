@@ -16,7 +16,7 @@ public class lang_launcher {
 	{
 		s = store;
 		s.debug.message("lang_launcher:start");
-		set_language(s.io.external.preference_langauge);
+		set_language(s.settings.language_english);
 		get_language_files();
 	}
 	public void set_language(String language_name)
@@ -24,16 +24,16 @@ public class lang_launcher {
 		if(language_name != null) {
 		s.debug.message("lang_launcher:set_language:" + language_name);
 		directory_texts = s.io.external.directory_language_launcher + "texts" + 
-                s.io.external.file_slash + s.io.external.preference_langauge + s.io.external.file_slash;
+                s.io.external.file_slash + s.settings.language_english + s.io.external.file_slash;
 		
 		directory_captions = s.io.external.directory_language_launcher + "captions" + 
-      			 s.io.external.file_slash + s.io.external.preference_langauge + s.io.external.file_slash;
+      			 s.io.external.file_slash + s.settings.language_english + s.io.external.file_slash;
 		
 		directory_labels = s.io.external.directory_language_launcher + "labels" + 
-      		   s.io.external.file_slash + s.io.external.preference_langauge + s.io.external.file_slash;
+      		   s.io.external.file_slash + s.settings.language_english + s.io.external.file_slash;
 		
 		directory_subtitles = s.io.external.directory_language_launcher + "texts" + 
-					  s.io.external.file_slash + s.io.external.preference_langauge + s.io.external.file_slash;
+					  s.io.external.file_slash + s.settings.language_english + s.io.external.file_slash;
 		} else {
 			s.debug.message("ERROR:lang_launcher:set_langauge: null language_name");
 		}

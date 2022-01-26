@@ -6,13 +6,14 @@ public class storage {
 	datas data;
 	inputs input;
 	events event;
-	assets asset;
+	old_assets asset;
 	dimensions dimension;
 	guis gui;
 	dashboards dashboard;
 	panels panel;
 	languages lang;
 	gui_file_manager file_manager;
+	setting settings;
 	
 	//testing remove later
 	gui_test gt;
@@ -25,13 +26,14 @@ public class storage {
 		input = new inputs();
 		data = new datas();
 		event = new events();
-		asset = new assets();
+		asset = new old_assets();
 		gui = new guis();
 		dashboard = new dashboards();
 		dimension = new dimensions();
 		panel = new panels();
 		lang = new languages();
 		file_manager = new gui_file_manager();
+		settings = new setting();
 	}
 	public void recursive_start(storage store, String build_number)
 	{
@@ -40,6 +42,7 @@ public class storage {
 		s.debug.message("storage:recursive_start");
 		io.start(s);
 		file_manager.start(s);
+		settings.start(s);
 		input.start(s);
 		data.start(s);
 		event.start(s);

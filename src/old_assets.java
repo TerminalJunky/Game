@@ -1,5 +1,5 @@
 
-public class assets {
+public class old_assets {
 
 	storage s;
 	asset_images images;
