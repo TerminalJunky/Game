@@ -8,11 +8,20 @@ public class Main {
 		s.start(build_number);
 		s.recursive_start(s, build_number);
 	
-		s.gui.launcher.start(s);
-		s.gui.launcher.launch();
+		////s.gui.launcher.start(s);
+		//s.gui.launcher.launch();
 		
 		//testing remove later
 		//gui_test gt = new gui_test();
 		//gt.start(s);	
+		
+		gui_game game = new gui_game();
+		game.start(s);
+		game.launch(1280, 720);
+		
+		gui_game_v2 g2 = new gui_game_v2();
+		g2.start(s);
+		g2.launch(1280, 720);
+		
 	}
 }

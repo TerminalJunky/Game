@@ -2,14 +2,14 @@
 public class guis {
 
 	storage s;
-	gui_launcher launcher;
-	gui_mods mods;
+	OLD_gui_launcher launcher;
+	OLD_gui_mods mods;
 	
 	public void start(storage store)
 	{
 		s = store;
 		s.debug.message("guis:start");
-		launcher = new gui_launcher();
-		mods = new gui_mods();
+		launcher = new OLD_gui_launcher();
+		mods = new OLD_gui_mods();
 	}
 }

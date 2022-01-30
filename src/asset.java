@@ -80,57 +80,86 @@ public class asset {
 	BufferedImage black;
 	BufferedImage clear;
 	
-	int source_width;
-	int source_height;
-	int width;
-	int height;
-	
 	ArrayList<Clip> music;
 	ArrayList<Clip> sounds;
 	ArrayList<Clip> speech;
+	
+	int grid_max_width = 100;
+	int grid_max_height = 100;
+	int grid_scaled_width = 100;
+	int grid_scaled_height = 100;
 	
 	public void start(storage store)
 	{
 		s = store;
 		s.debug.message("asset:start");
+		file_slash = s.io.external.file_slash;
 	}
 	public void launch(String directory_root)
-	{
+	{	
 		if(directory_root != null) {
 			s.debug.message("asset:launch:" + directory_root);
-			set_language(s.settings.file_language_preferred);
 			//PENDING GET_IMAGE SCALE INCOMPLETE
+			get_scaling_preferences();
 			set_directories(directory_root);
-			get_language_files();
 		} else {
 			s.debug.message("asset:launch:null directory_root");
 		}
+	}
+	public void get_scaling_preferences()
+	{
+		// PENDING WORK FOR DYNAMIC SCALING BASES ON RESOLUTION & PREFERENCES
+		s.debug.message("asset:get_scaling_preferences");
 	}
 	public void set_directories(String directory_root)
 	{
 		if(directory_root != null) {
 		directory_primary = directory_root;
 			if(s.settings.file_language_preferred != null) {
-				language = s.settings.file_language_preferred;
+				language = s.settings.file_language_preferred.toLowerCase();
 			} else {
 				language = "english";
 			}
 			set_images(directory_primary);
-			set_language(directory_primary);
+			set_language(s.settings.language_english);
 			set_audio(directory_primary);
 			get_language_files();
 		} else {
 			s.debug.message("ERROR:asset:set_directories:null directory_root");
 		}
 	}
+	/*
 	public void set_image_scale(int image_scale_x, int image_scale_y)
 	{
 		s.debug.message("asset:image_scale:width:" + image_scale_x + ":height:" + image_scale_y);
 		width = image_scale_x;
 		height = image_scale_y;
 	}
+	*/
 	public void set_images(String directory_primary)
 	{
+		source_layer_0 = new ArrayList<>();
+		source_layer_1 = new ArrayList<>();
+		source_layer_2 = new ArrayList<>();
+		source_layer_3 = new ArrayList<>();
+		source_layer_4 = new ArrayList<>();
+		source_layer_5 = new ArrayList<>();
+		source_layer_6 = new ArrayList<>();
+		source_layer_7 = new ArrayList<>();
+		source_layer_8 = new ArrayList<>();
+		source_layer_9 = new ArrayList<>();
+		
+		scaled_layer_0 = new ArrayList<>();
+		scaled_layer_1 = new ArrayList<>();
+		scaled_layer_2 = new ArrayList<>();
+		scaled_layer_3 = new ArrayList<>();
+		scaled_layer_4 = new ArrayList<>();
+		scaled_layer_5 = new ArrayList<>();
+		scaled_layer_6 = new ArrayList<>();
+		scaled_layer_7 = new ArrayList<>();
+		scaled_layer_8 = new ArrayList<>();
+		scaled_layer_9 = new ArrayList<>();
+		
 		if(directory_primary != null) {
 			s.debug.message("asset:get_images:" + directory_primary);
 			directory_images = directory_primary + "images" + file_slash;
@@ -145,8 +174,8 @@ public class asset {
 			directory_images_layer_8 = directory_images + "layer_8" + file_slash;
 			directory_images_layer_9 = directory_images + "layer_9" + file_slash;
 			
-			black = s.io.external.get_image(s.io.external.file_images_black);
-			clear = s.io.external.get_image(s.io.external.file_images_clear);
+			black = s.io.external.get_image(directory_images + "black.png");
+			clear = s.io.external.get_image(directory_images + "clear.png");
 			
 			/* must be set to 0 is black, 1 is clear for all arraylists as default values*/
 			source_layer_0 = s.io.external.get_all_images(directory_images_layer_0);
@@ -160,31 +189,32 @@ public class asset {
 			source_layer_8 = s.io.external.get_all_images(directory_images_layer_8);
 			source_layer_9 = s.io.external.get_all_images(directory_images_layer_9);
 			
-			source_layer_0.add(0, clear);
-			source_layer_1.add(0, clear);
-			source_layer_2.add(0, clear);
-			source_layer_3.add(0, clear);
-			source_layer_4.add(0, clear);
-			source_layer_5.add(0, clear);
-			source_layer_6.add(0, clear);
-			source_layer_7.add(0, clear);
-			source_layer_8.add(0, clear);
-			source_layer_9.add(0, clear);
+			source_layer_0.add(black);
+			source_layer_1.add(black);
+			source_layer_2.add(black);
+			source_layer_3.add(black);
+			source_layer_4.add(black);
+			source_layer_5.add(black);
+			source_layer_6.add(black);
+			source_layer_7.add(black);
+			source_layer_8.add(black);
+			source_layer_9.add(black);
 			
-			source_layer_0.add(0, black);
-			source_layer_1.add(0, black);
-			source_layer_2.add(0, black);
-			source_layer_3.add(0, black);
-			source_layer_4.add(0, black);
-			source_layer_5.add(0, black);
-			source_layer_6.add(0, black);
-			source_layer_7.add(0, black);
-			source_layer_8.add(0, black);
-			source_layer_9.add(0, black);
+			source_layer_0.add(clear);
+			source_layer_1.add(clear);
+			source_layer_2.add(clear);
+			source_layer_3.add(clear);
+			source_layer_4.add(clear);
+			source_layer_5.add(clear);
+			source_layer_6.add(clear);
+			source_layer_7.add(clear);
+			source_layer_8.add(clear);
+			source_layer_9.add(clear);
 			
 			//PENDING WORK THIS IS FOR TESTING NOT FINAL SPOT
-			get_rescaled_sources(width,  height);
-			get_rescaled_grid_images(width, height);
+			
+			get_rescaled_sources(grid_max_width, grid_max_height);
+			get_rescaled_grid_images(grid_scaled_width, grid_scaled_height);
 		} else {
 			s.debug.message("asset:set_images: null directory_primary");
 		}
@@ -325,11 +355,12 @@ public class asset {
 	{
 		if(language_name != null) {
 		s.debug.message("asset:set_language:" + language_name);
-		directory_language = directory_primary + "language" + file_slash + language + file_slash;
-		directory_language_captions = directory_language + "captions" + file_slash;
-		directory_language_labels = directory_language + "labels" + file_slash;
-		directory_language_subtitles = directory_language + "subtitles" + file_slash;
-		directory_language_texts = directory_language + "texts" + file_slash;
+		language = language_name;
+		directory_language = directory_primary + "language" + file_slash;
+		directory_language_captions = directory_language + "captions" + file_slash + language + file_slash;
+		directory_language_labels = directory_language + "labels" + file_slash + language + file_slash;
+		directory_language_subtitles = directory_language + "subtitles" + file_slash + language + file_slash;
+		directory_language_texts = directory_language + "texts" + file_slash + language + file_slash;
 		} else {
 			s.debug.message("ERROR:lang_launcher:set_langauge: null language_name");
 		}

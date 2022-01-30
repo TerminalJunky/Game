@@ -6,12 +6,12 @@ public class storage {
 	datas data;
 	inputs input;
 	events event;
-	old_assets asset;
-	dimensions dimension;
+	//old_assets asset;
+	//dimensions dimension;
 	guis gui;
-	dashboards dashboard;
-	panels panel;
-	languages lang;
+	//dashboards dashboard;
+	//panels panel;
+	//languages lang;
 	gui_file_manager file_manager;
 	setting settings;
 	
@@ -26,12 +26,12 @@ public class storage {
 		input = new inputs();
 		data = new datas();
 		event = new events();
-		asset = new old_assets();
+		//asset = new old_assets();
 		gui = new guis();
-		dashboard = new dashboards();
-		dimension = new dimensions();
-		panel = new panels();
-		lang = new languages();
+		//dashboard = new dashboards();
+		//dimension = new dimensions();
+		//panel = new panels();
+		//lang = new languages();
 		file_manager = new gui_file_manager();
 		settings = new setting();
 	}
@@ -46,13 +46,13 @@ public class storage {
 		input.start(s);
 		data.start(s);
 		event.start(s);
-		asset.start(s);
-		asset.images.start(s);
-		asset.images.get_all_images();
-		lang.start(s);
-		dimension.start(s);
-		dashboard.start(s);
-		panel.start(s);
+		//asset.start(s);
+		//asset.images.start(s);
+		//asset.images.get_all_images();
+		//lang.start(s);
+		//dimension.start(s);
+		//dashboard.start(s);
+		//panel.start(s);
 		gui.start(s);
 	}
 }

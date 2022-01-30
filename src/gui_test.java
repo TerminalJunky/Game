@@ -16,7 +16,8 @@ import javax.swing.WindowConstants;
 public class gui_test {
 	public storage s;
 	JButton button_send;
-	JButton button_decline;
+	//JButton button_decline;
+	button_layer button_decline;
 	JTextArea text_bug_report;
 	JScrollPane scroll_bug_report;
 	String text_report;
@@ -26,6 +27,12 @@ public class gui_test {
 	{
 		s = store;
 		System.out.println("ERROR:BUG_DECLARED:GUI:BUG");
+		
+		asset a = new asset();
+		a.start(s);
+		a.launch(s.io.external.directory_primary + "offical" + s.io.external.file_slash + "default" + s.io.external.file_slash);
+		button_decline = new button_layer();
+		button_decline.start(store, a);
 		
 		Dimension dimension_window = new Dimension(640,480);
 		Dimension dimension_top = new Dimension(640,380);
@@ -53,7 +60,6 @@ public class gui_test {
 		panel_spacer_03.setBackground(Color.MAGENTA);
 		
 		button_send = new JButton();
-		button_decline = new JButton();
 		text_bug_report = new JTextArea();
 		scroll_bug_report = new JScrollPane(text_bug_report);
 		text_report = "";
@@ -85,10 +91,10 @@ public class gui_test {
 		panel_top.setLayout(fix);
 		
 		button_send.setPreferredSize(dimension_buttons);
-		button_decline.setPreferredSize(dimension_buttons);
+		button_decline.button.setPreferredSize(dimension_buttons);
 		
 		button_send.setText("Send Bug Info");
-		button_decline.setText("Do Not Send");
+		button_decline.button.setText("Do Not Send");
 		
 		//data_button_grid bg = new data_button_grid();
 		//bg.start(s);
@@ -100,7 +106,7 @@ public class gui_test {
 		panel_top.add(test_panel);
 		//panel_top.add(scroll_bug_report);
 		
-		panel_decline.add(button_decline);
+		panel_decline.add(button_decline.button);
 		panel_send.add(button_send);
 		
 		panel_middle.add(panel_spacer_01);
@@ -133,10 +139,10 @@ public class gui_test {
 				text_bug_report.setText(text_report + "user_accepted");
 			}
 		});
-		button_decline.addActionListener(new ActionListener() {
+		button_decline.button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//PENDING WORK window close needed
-				s.gui.launcher.close();
+				//s.gui.launcher.close();
 				text_bug_report.setText(text_report + "user_declined");
 			}
 		});
