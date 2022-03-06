@@ -6,6 +6,7 @@ public class storage {
 	datas data;
 	inputs input;
 	events event;
+	asset assets;
 	//old_assets asset;
 	//dimensions dimension;
 	guis gui;
@@ -26,7 +27,7 @@ public class storage {
 		input = new inputs();
 		data = new datas();
 		event = new events();
-		//asset = new old_assets();
+		assets = new asset();
 		gui = new guis();
 		//dashboard = new dashboards();
 		//dimension = new dimensions();
@@ -46,7 +47,8 @@ public class storage {
 		input.start(s);
 		data.start(s);
 		event.start(s);
-		//asset.start(s);
+		assets.start(s);
+		assets.set_directories("C:\\Users\\Bryan\\code\\Game\\offical\\default\\");
 		//asset.images.start(s);
 		//asset.images.get_all_images();
 		//lang.start(s);

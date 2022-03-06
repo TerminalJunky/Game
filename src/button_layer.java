@@ -26,6 +26,9 @@ public class button_layer {
 	public void set_dimensions(Dimension dimension)
 	{
 		dimensions = dimension;
+		button.setSize(dimension);
+		button.setMinimumSize(dimension);
+		button.setMaximumSize(dimension);
 	}
 	public void set_dimensions_custom(int width, int height)
 	{

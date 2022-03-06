@@ -26,12 +26,12 @@ public class OLD_gui_launcher {
 	}
 	public void close()
 	{
-		s.gui.launcher.gui.dispose();
+		//s.gui.launcher.gui.dispose();
 		//s.lang.launcher = new lang_launcher();
 		//s.dimension.launcher = new dimension_launcher();
 		//s.dashboard.launcher = new dash_launcher();
 		//s.panel.launcher = new panel_launcher();
-		s.gui.launcher = new OLD_gui_launcher();
+		//s.gui.launcher = new OLD_gui_launcher();
 		System.gc();
 	}
 }

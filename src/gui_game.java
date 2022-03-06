@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
@@ -31,10 +32,17 @@ public class gui_game {
 	int resolution_x;
 	int resolution_y;
 	
+	int data_index_x;
+	int data_index_y;
+	
 	public void start(storage store)
 	{
 		s = store;
 		s.debug.message("gui_game:start");
+		data_index_x = 0;
+		data_index_y = 0;
+		resolution_x = 1280;
+		resolution_y = 720;
 	}
 	public void launch(int width, int height)
 	{
@@ -61,7 +69,7 @@ public class gui_game {
 				dimension_mini_map = new Dimension(290, 290);
 				dimension_button_grid = new Dimension(290, 147);
 				dimension_info = new Dimension(290, 283);
-				dimension_grid_square = new Dimension(40 , 40);
+				dimension_grid_square = new Dimension(45 , 45);
 		}
 	}
 	public void make_panels()
@@ -105,7 +113,7 @@ public class gui_game {
 		
 		BoxLayout background_x_axis = new BoxLayout(panel_background, BoxLayout.X_AXIS);
 		BoxLayout left_side_y_axis = new BoxLayout(panel_left_side, BoxLayout.Y_AXIS);
-		BoxLayout right_side_y_axis = new BoxLayout(panel_right_side, BoxLayout.Y_AXIS);
+		FlowLayout right_side_y_axis = new FlowLayout(FlowLayout.CENTER,0,0);
 		
 		panel_background.setLayout(background_x_axis);
 		panel_left_side.setLayout(left_side_y_axis);
@@ -120,6 +128,9 @@ public class gui_game {
 		panel_button_grid.setBackground(Color.MAGENTA);
 		panel_info.setBackground(Color.RED);
 		
+		
+		s.data.grid.launch("C:\\Users\\Bryan\\code\\Game\\offical\\default\\scenario\\0000.txt", dimension_right_side);
+		panel_game_board = s.data.grid.get_grid();
 		panel_right_side.add(panel_game_board);
 		
 		panel_left_side.add(panel_mini_map);
@@ -141,5 +152,12 @@ public class gui_game {
 		// pack is whitespace bug fix
 		gui.pack();
 		gui.setVisible(true);
+	}
+	public JPanel get_game_grid()
+	{
+		s.debug.message("data_game_grid:get_game_grid");
+		// PENDING WORK
+		s.data.grid.launch("C:\\Users\\Bryan\\code\\Game\\offical\\default\\scenario\\0000.txt", dimension_right_side);
+		return s.data.grid.get_grid();
 	}
 }

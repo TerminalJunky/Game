@@ -86,8 +86,8 @@ public class asset {
 	
 	int grid_max_width = 100;
 	int grid_max_height = 100;
-	int grid_scaled_width = 100;
-	int grid_scaled_height = 100;
+	int grid_scaled_width = 45;
+	int grid_scaled_height = 45;
 	
 	public void start(storage store)
 	{
@@ -177,7 +177,7 @@ public class asset {
 			black = s.io.external.get_image(directory_images + "black.png");
 			clear = s.io.external.get_image(directory_images + "clear.png");
 			
-			/* must be set to 0 is black, 1 is clear for all arraylists as default values*/
+			/* must be set to 0 is clear, 1 is black for all arraylists as default values*/
 			source_layer_0 = s.io.external.get_all_images(directory_images_layer_0);
 			source_layer_1 = s.io.external.get_all_images(directory_images_layer_1);
 			source_layer_2 = s.io.external.get_all_images(directory_images_layer_2);
@@ -211,6 +211,8 @@ public class asset {
 			source_layer_8.add(clear);
 			source_layer_9.add(clear);
 			
+			
+			
 			//PENDING WORK THIS IS FOR TESTING NOT FINAL SPOT
 			
 			get_rescaled_sources(grid_max_width, grid_max_height);
@@ -235,31 +237,31 @@ public class asset {
 		for(int x = 0; x < source_layer_0.size(); x++) {
 			source_layer_0.set(x, get_rescaled_image(source_layer_0.get(x), image_scale_x, image_scale_y));
 		}
-		for(int x = 0; x < source_layer_0.size(); x++) {
+		for(int x = 0; x < source_layer_1.size(); x++) {
 			source_layer_1.set(x, get_rescaled_image(source_layer_1.get(x), image_scale_x, image_scale_y));
 		}
-		for(int x = 0; x < source_layer_0.size(); x++) {
+		for(int x = 0; x < source_layer_2.size(); x++) {
 			source_layer_2.set(x, get_rescaled_image(source_layer_2.get(x), image_scale_x, image_scale_y));
 		}
-		for(int x = 0; x < source_layer_0.size(); x++) {
+		for(int x = 0; x < source_layer_3.size(); x++) {
 			source_layer_3.set(x, get_rescaled_image(source_layer_3.get(x), image_scale_x, image_scale_y));
 		}
-		for(int x = 0; x < source_layer_0.size(); x++) {
+		for(int x = 0; x < source_layer_4.size(); x++) {
 			source_layer_4.set(x, get_rescaled_image(source_layer_4.get(x), image_scale_x, image_scale_y));
 		}
-		for(int x = 0; x < source_layer_0.size(); x++) {
+		for(int x = 0; x < source_layer_5.size(); x++) {
 			source_layer_5.set(x, get_rescaled_image(source_layer_5.get(x), image_scale_x, image_scale_y));
 		}
-		for(int x = 0; x < source_layer_0.size(); x++) {
+		for(int x = 0; x < source_layer_6.size(); x++) {
 			source_layer_6.set(x, get_rescaled_image(source_layer_6.get(x), image_scale_x, image_scale_y));
 		}
-		for(int x = 0; x < source_layer_0.size(); x++) {
+		for(int x = 0; x < source_layer_7.size(); x++) {
 			source_layer_7.set(x, get_rescaled_image(source_layer_7.get(x), image_scale_x, image_scale_y));
 		}
-		for(int x = 0; x < source_layer_0.size(); x++) {
+		for(int x = 0; x < source_layer_8.size(); x++) {
 			source_layer_8.set(x, get_rescaled_image(source_layer_8.get(x), image_scale_x, image_scale_y));
 		}
-		for(int x = 0; x < source_layer_0.size(); x++) {
+		for(int x = 0; x < source_layer_9.size(); x++) {
 			source_layer_9.set(x, get_rescaled_image(source_layer_9.get(x), image_scale_x, image_scale_y));
 		}
 	}

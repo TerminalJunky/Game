@@ -100,8 +100,8 @@ public class gui_test {
 		//bg.start(s);
 		s.data.grid.start(s);
 
-		test_panel = s.data.grid.set_grid_size(5, 5, dimension_top);
-		s.data.grid.repaint_button_all();
+		//test_panel = s.data.grid.set_grid_size(5, 5, dimension_top);
+		//s.data.grid.repaint_button_all();
 		
 		panel_top.add(test_panel);
 		//panel_top.add(scroll_bug_report);
